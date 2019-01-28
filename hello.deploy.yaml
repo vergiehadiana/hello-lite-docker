@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+  labels:
+    app: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: <cluster-name>.icp:8500/dev/hello:1.0
+        env:
+        - name: LISTENING_PORT
+          value: "8080"
+        livenessProbe:
+          httpGet:
+            path: /welcome
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 3
+        resources:
+          limits:
+            cpu: 1
+          requests:
+            cpu: 100m
+      

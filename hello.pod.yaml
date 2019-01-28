@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello
+  labels:
+    app: hello
+spec:
+  containers:
+  - name: hello
+    image: <cluster-name>.icp:8500/dev/hello:1.0

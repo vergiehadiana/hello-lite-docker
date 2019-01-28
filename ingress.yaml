@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello
+spec:
+  rules:
+  - host: hello.<proxy-ip-cluster>.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: hello
+          servicePort: 80
